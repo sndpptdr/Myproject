@@ -41,7 +41,7 @@ ResultSet resultSet = null;
 
 </tr>
 <tr bgcolor="#A52A2A">
-<td><b>username</b></td>
+<td><b>name</b></td>
 <td><b>email</b></td>
 <td><b>phone</b></td>
 </tr>

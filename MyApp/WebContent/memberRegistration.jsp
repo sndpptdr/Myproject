@@ -19,7 +19,7 @@ body {
 		position: absolute;
 		transform:translate(-50%,-50%);
 		box-sizing:border-box;
-		padding: 50px 30px;
+		padding: 10px 40px;
 		opacity:.7;
 		
 }
@@ -46,25 +46,24 @@ h1{
           color:#fff;
           font-size:16px;
               }
-.registration input[type="submit"]{
-          border: none;
+              
+input[type=submit]:disabled {
+					border: none;
           outline:none;
           height:40px;
-          background:#a9a9a9	;
-          color: #000000	;
+          color: #000;
           font-size:18px;
           border-radius:20px;
- }
- .registration input[type="submit"]:hover
-      {    cursor:pointer;
-          background:#808080;
-          color:#fff;
- } 
-.active{
-        color:#fff;
-        background:#e02626;
-        border-radius:4px;
-      }
+}
+input[type=submit]:enabled { cursor: pointer;
+					border: none;
+          outline:none;
+          height:40px;
+          background:#a9a9a9;
+          color: #fff;
+          font-size:18px;
+          border-radius:20px;
+}
 p {
   color: #fff;
   text-indent: 10px;
@@ -78,29 +77,41 @@ p {
 <body>
 <div class ="registration">
 <h1>Register Here</h1>
-	<form action="Register" method="post">
-<table>
-<tr><td>User Name: </td><td><input class ="input" type="text" name="uname" autocomplete="off"></td></tr>
-<tr><td>Password: </td><td><input type="password" name="password" autocomplete="off"></td></tr>
-<tr><td>Email: </td><td><input type="text" name="email" autocomplete="off"></td></tr>
-<tr><td>phone: </td><td><input type="text" name="phone" autocomplete="off"></td></tr>
-<tr><td></td><td><input class ="button" type="submit" value="register" autocomplete="off"></td></tr>
-</table>
+<form  action="Register" method="post">
+
+Name:<input type="text" name="uname" autocomplete="off" onkeyup="manage(this)"/>
+
+Password:<input type="password" name="password" autocomplete="off" onkeyup="manage(this)"/>
+
+Email:<input type="text" name="email" autocomplete="off" onkeyup="manage(this)"/>
+
+Phone:<input type="text" name="phone" autocomplete="off" onkeyup="manage(this)"/>
+
+<input type="submit" value="register" id="submit" disabled />
 </form>
-<p>Already Registered?<a style="color:blue" href = "login.jsp">Login</a></p>
+<p>Already Registered?<a style="color:blue" href = "login.jsp">login</a></p>
 </div>
 </body>
+
+
 <script>
-let input = document.querySelector(".input");
-let button = document.querySelector(".button");
-button.disabled = true;
-input.addEventListener("change", stateHandle);
-function stateHandle() {
-  if (document.querySelector(".input").value === "") {
-    button.disabled = true;
-  } else {
-    button.disabled = false;
-  }
-}
+    function manage(txt) {
+        var bt = document.getElementById('submit');
+        var ele = document.getElementsByTagName('input'); 
+		
+        // Loop through each element.
+        for (i = 0; i < ele.length; i++) {
+        	
+
+            // Check the element type.
+            if (ele[i].type == 'text' && ele[i].value == '') {
+                bt.disabled = true;    // Disable the button.
+                return false;
+            }
+            else {
+                bt.disabled = false;   // Enable the button.
+            }
+        }
+    }
 </script>
 </html>

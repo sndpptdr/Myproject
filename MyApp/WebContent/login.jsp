@@ -70,12 +70,12 @@ h1{
 		<form action="login" method="post">
 			<table>
 				<tr>
-					<td>UserName</td>
-					<td><input class ="input" type="text" name="username" autocomplete="off"/></td>
+					<td>email</td>
+					<td><input class ="input" type="text" name="username" autocomplete="off" onkeyup="manage(this)"/></td>
 				</tr>
 				<tr>
-					<td>Password</td>
-					<td><input type="password" name="password" autocomplete="off" /></td>
+					<td>password</td>
+					<td><input type="password" name="password" autocomplete="off" onkeyup="manage(this)" /></td>
 				</tr>
 
 			</table>
@@ -89,16 +89,22 @@ h1{
 	</div>
 </body>
 <script>
-let input = document.querySelector(".input");
-let button = document.querySelector(".submit");
-button.disabled = true;
-input.addEventListener("change", stateHandle);
-function stateHandle() {
-  if (document.querySelector(".input").value === "") {
-    button.disabled = true;
-  } else {
-    button.disabled = false;
-  }
-}
+    function manage(txt) {
+        var bt = document.getElementById('submit');
+        var ele = document.getElementsByTagName('input'); 
+
+        // Loop through each element.
+        for (i = 0; i < ele.length; i++) {
+
+            // Check the element type.
+            if (ele[i].type == 'text' && ele[i].value == '') {
+                bt.disabled = true;    // Disable the button.
+                return false;
+            }
+            else {
+                bt.disabled = false;   // Enable the button.
+            }
+        }
+    }
 </script>
 </html>
